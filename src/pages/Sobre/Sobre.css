@@ -94,7 +94,83 @@
   margin-bottom: 1.5rem;
 }
 
-/* --- 3. PILARES FUNDAMENTAIS --- */
+/* --- 3. NOSSAS SOLUÇÕES --- */
+.solucoes-section {
+  padding: 8rem 8%;
+  text-align: center;
+  background-color: white;
+}
+
+.solucoes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  text-align: left;
+}
+
+.solucao-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 2.5rem 2rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: white;
+  transition: 0.3s;
+}
+
+.solucao-card:hover {
+  border-color: var(--tera-blue-mid);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+  transform: translateY(-5px);
+}
+
+.solucao-card h4 {
+  font-family: var(--font-title);
+  font-size: 1.3rem;
+  color: var(--tera-blue-dark);
+  font-weight: 400;
+}
+
+.solucao-tagline {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: #666;
+  font-style: italic;
+  line-height: 1.5;
+  margin-top: -0.5rem;
+}
+
+.solucao-lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.solucao-lista li {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.4;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.solucao-lista li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--tera-blue-mid);
+}
+
+/* --- 4. PILARES FUNDAMENTAIS --- */
 .pillars-section-sobre {
   padding: 8rem 8%;
   text-align: center;
@@ -205,7 +281,17 @@
     text-align: center;
   }
 
-  /* 3. PILARES FUNDAMENTAIS */
+  /* 3. NOSSAS SOLUÇÕES */
+  .solucoes-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .solucoes-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* 4. PILARES FUNDAMENTAIS */
   .pillars-section-sobre {
     padding: 4rem 1.5rem;
   }
