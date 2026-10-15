@@ -47,7 +47,7 @@ export const RedefinirSenha = () => {
 
       const dados = await resposta.json();
       setMensagem(dados.message);
-    } catch (error) {
+    } catch {
       setMensagem('Erro de conexão com o servidor.');
     } finally {
       setCarregando(false);

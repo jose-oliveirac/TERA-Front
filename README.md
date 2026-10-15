@@ -79,8 +79,23 @@ Acessa em `http://localhost:8080`.
 | `/reset-password?token=...` | Redefinir senha | Link recebido por email; valida o token antes de mostrar o formulário |
 | `/dashboard` | Dashboard | Requer login; aba "Colaboradores" visível somente para usuários `ADMIN` |
 
-## Lint
+## Testes
+
+Testes de unidade e de componente com Jest + React Testing Library. Cobrem os fluxos principais: Login, Esqueci senha, Redefinir senha, Clientes, Colaboradores, ContactForm e os formatadores de CPF/CNPJ/telefone.
 
 ```
-npm run lint
+npm test             # roda a suíte uma vez
+npm run test:watch   # modo observador, re-roda ao salvar
+npm run test:coverage # roda com relatório de cobertura
+```
+
+A API é sempre simulada (`fetch`/`axios` mockados) — os testes nunca dependem do backend real nem de rede.
+
+## Qualidade (checagens antes de commitar/abrir PR)
+
+```
+npm run lint        # padrões de código
+npm run typecheck   # checagem de tipos TypeScript
+npm test             # testes
+npm run build        # build de produção
 ```

@@ -3,9 +3,15 @@ import './clientes.css';
 import { Toast } from '../../components/Toast/Toast';
 import { Pencil, Trash2 } from 'lucide-react';
 
+interface Colaborador {
+  id: number;
+  name: string;
+  email: string;
+}
+
 export const Colaboradores = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [colaboradores, setColaboradores] = useState<any[]>([]);
+  const [colaboradores, setColaboradores] = useState<Colaborador[]>([]);
   const [mensagemToast, setMensagemToast] = useState({ texto: '', tipo: '' as 'sucesso' | 'erro' });
 
   const [formData, setFormData] = useState({
@@ -34,7 +40,10 @@ export const Colaboradores = () => {
     }
   };
 
-  useEffect(() => { buscarColaboradores(); }, []);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- busca inicial da lista ao montar a tela
+    buscarColaboradores();
+  }, []);
   
 const abrirNovo = () => {
   setEditandoId(null);
@@ -42,7 +51,7 @@ const abrirNovo = () => {
   setIsModalOpen(true);
 };
 
-const abrirEdicao = (c: any) => {
+const abrirEdicao = (c: Colaborador) => {
   setEditandoId(c.id);
   setFormData({ name: c.name, email: c.email, password: '' });
   setIsModalOpen(true);

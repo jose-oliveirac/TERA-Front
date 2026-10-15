@@ -28,14 +28,15 @@ export function ContactForm() {
       setStatus({ type: 'success', message: 'Cadastro realizado com sucesso!' });
       setFormData({ name: '', email: '', phone: '', doc: '' }); 
 
-    } catch (error: any) {
+    } catch (error) {
       let errorMsg = 'Erro ao tentar cadastrar.';
 
-      if (error.response?.data) {
-        if (error.response.data.issues && error.response.data.issues[0]) {
-          errorMsg = error.response.data.issues[0].message;
-        } else if (error.response.data.message) {
-          errorMsg = error.response.data.message;
+      if (axios.isAxiosError(error) && error.response?.data) {
+        const data = error.response.data;
+        if (data.issues && data.issues[0]) {
+          errorMsg = data.issues[0].message;
+        } else if (data.message) {
+          errorMsg = data.message;
         }
       }
 
