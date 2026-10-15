@@ -3,6 +3,14 @@ import './clientes.css';
 import { formatarDoc, formatarTelefone } from '../../utils/formatters';
 import { Toast } from '../../components/Toast/Toast';
 
+interface Cliente {
+  id: number;
+  name: string;
+  email: string;
+  doc: string;
+  phone: string;
+}
+
 export const Clientes = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -16,7 +24,7 @@ export const Clientes = () => {
     phone: ''
   });
 
-  const [clientes, setClientes] = useState<any[]>([]);
+  const [clientes, setClientes] = useState<Cliente[]>([]);
 
   const mostrarAviso = (texto: string, tipo: 'sucesso' | 'erro') => {
     setMensagemToast({ texto, tipo });
@@ -26,7 +34,7 @@ export const Clientes = () => {
   const buscarClientes = async () => {
     try {
       const token = localStorage.getItem('tera_token'); 
-      const resposta = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/costumer/list`, {
+      const resposta = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/customer/list`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -45,6 +53,7 @@ export const Clientes = () => {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- busca inicial da lista ao montar a tela
     buscarClientes();
   }, []);
 
@@ -72,7 +81,7 @@ export const Clientes = () => {
         const erroMsg = dados.error?.[0]?.message || dados.message || "Erro ao cadastrar cliente.";
         mostrarAviso(erroMsg, "erro");
       }
-    } catch (error) {
+    } catch {
       // 5. ERRO DE CONEXÃO NO TOAST
       mostrarAviso('Erro de conexão com o servidor.', 'erro');
     }

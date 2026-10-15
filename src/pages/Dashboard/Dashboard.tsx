@@ -6,18 +6,24 @@ import { Colaboradores } from './Colaboradores';
 
 export const Dashboard = () => {
   const navigate = useNavigate();
-  const [abaAtiva, setAbaAtiva] = useState('visao-geral'); 
-  const [role, setRole] = useState<string | null>(null);
+  const [abaAtiva, setAbaAtiva] = useState('visao-geral');
+  const [role] = useState<string | null>(() => {
+    const token = localStorage.getItem('tera_token');
+    if (!token) return null;
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.role ?? null;
+    } catch {
+      return null;
+    }
+  });
 
   useEffect(() => {
     const token = localStorage.getItem('tera_token');
     if (!token) {
       navigate('/auth');
-      return;
     }
-
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    setRole(payload.role);
   }, [navigate]);
 
   const handleLogout = () => {

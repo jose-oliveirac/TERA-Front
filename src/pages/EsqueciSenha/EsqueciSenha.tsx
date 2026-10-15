@@ -23,7 +23,7 @@ const resposta = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/forgot-pa
 
       const dados = await resposta.json();
       setMensagem(dados.message);
-    } catch (error) {
+    } catch {
       setMensagem('Erro de conexão com o servidor.');
     } finally {
       setCarregando(false);

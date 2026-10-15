@@ -25,7 +25,8 @@ export const Contato = () => {
 
   // 4. FUNÇÃO PARA ATUALIZAR OS DADOS ENQUANTO O USUÁRIO DIGITA
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let { name, value } = e.target;
+    const { name } = e.target;
+    let { value } = e.target;
 
     // Trava de segurança para o CPF/CNPJ: aceita APENAS números
     if (name === 'doc') {

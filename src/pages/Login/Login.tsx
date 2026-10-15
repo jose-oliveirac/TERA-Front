@@ -32,7 +32,7 @@ export const Login = () => {
       } else {
         setErro(dados.mensagem || 'E-mail ou senha incorretos.');
       }
-    } catch (error) {
+    } catch {
       setErro('Erro de conexão com o servidor.');
     }
   };
